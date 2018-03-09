@@ -181,5 +181,6 @@ export default {
         letterSpacing: 0,
         textAlign: 'right',
         color: '#4fccff',
+        paddingRight: 10
     }
 }
