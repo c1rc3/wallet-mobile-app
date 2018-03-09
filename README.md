@@ -1,2 +1,19 @@
 # Libertas - A blockchain wallet
-Mobile version
+
+## Quick start
+
+Install
+```
+npm install 
+```
+
+Run with platform (iOS, Android)
+
+```
+npm run ios
+
+//or
+
+npm run adnroid
+``` 
+
