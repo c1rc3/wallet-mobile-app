@@ -1,9 +1,7 @@
 import React from 'react'
 import { ScrollView, View } from 'react-native'
-import { Container, Text, InputBox, SelectBox, RoundedButton, Button } from '../../component/commons'
+import { Container, Text, SettingInput, SettingSelect, RoundedButton, Button } from '../../component/commons'
 import ModalNavBar from '../../component/navbar/modal'
-import { AreaSpline, Theme } from '../../component/chart'
-import TransactionItem from '../../component/transaction-item'
 import LinearGradient from 'react-native-linear-gradient'
 import { SCREEN_OPTIONS } from '../const'
 import styles from './styles'
@@ -22,8 +20,8 @@ export default class CreateNewWallet extends React.Component {
                             <Text style={styles.cnw_title}>WALLET 1</Text>
                         </View>
                         <View style={styles.cnw_block_content}>
-                            <InputBox label={'Wallet Name'} placeholder={'Enter your wallet name'} />
-                            <SelectBox label={'Type'} placeholder={'Choose wallet type'} />
+                            <SettingInput label={'Wallet Name'} placeholder={'Enter your wallet name'} />
+                            <SettingSelect label={'Type'} placeholder={'Choose wallet type'} />
                         </View>
                     </View>
                     <View style={styles.cnw_block}>
@@ -31,8 +29,8 @@ export default class CreateNewWallet extends React.Component {
                             <Text style={styles.cnw_title}>WALLET 1</Text>
                         </View>
                         <View style={styles.cnw_block_content}>
-                            <InputBox label={'Wallet Name'} placeholder={'Enter your wallet name'} />
-                            <SelectBox label={'Type'} placeholder={'Choose wallet type'} />
+                            <SettingInput label={'Wallet Name'} placeholder={'Enter your wallet name'} />
+                            <SettingSelect label={'Type'} placeholder={'Choose wallet type'} />
                         </View>
                     </View>
                     <View style={styles.cnw_block}>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { ScrollView, View } from 'react-native'
-import { Container, Text, InputBox, SelectBox, RoundedButton, Button } from '../../component/commons'
+import { Container, Text, SettingInput, SettingSelect, RoundedButton, Button } from '../../component/commons'
 import ModalNavBar from '../../component/navbar/modal'
 import { AreaSpline, Theme } from '../../component/chart'
 import TransactionItem from '../../component/transaction-item'
@@ -20,13 +20,13 @@ export default class CreateNewWallet extends React.Component {
                 <ScrollView>
                     <View style={styles.cnw_block}>
                         <View style={styles.cnw_block_content}>
-                            <InputBox
+                            <SettingInput
                                 label={'Send to'}
                                 placeholder={'Enter the receiver\'s address or scan QR code'}
                                 rightAction={() => this.scanQRCode()}
                                 rightActionIcon={icons.backspace}
                             />
-                            <InputBox label={'Amount'} placeholder={'0.0'} />
+                            <SettingInput label={'Amount'} placeholder={'0.0'} />
                         </View>
                     </View>
                     <View style={[styles.cnw_block, { marginTop: 50 }]}>
