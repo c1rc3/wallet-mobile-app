@@ -1,4 +1,4 @@
-# Libertas - A blockchain wallet
+# Circe Wallet Mobile App - A blockchain wallet
 
 ## Quick start
 
