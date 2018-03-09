@@ -1,0 +1,5 @@
+0000000000000000000000000000000000000000 6c36e429f62e7bac686b04a878c20c6e4fcab375 ddb <ddb> 1519980612 +0700	commit (initial): add source
+6c36e429f62e7bac686b04a878c20c6e4fcab375 474463fc7f6338cd8c683b1f37bebba9848be59b ddb <ddb> 1520410565 +0700	commit: add screen Home Wallet, Wallet Details, Swipe Actions for home wallet. Draw chart for home wallet, wallet detail
+474463fc7f6338cd8c683b1f37bebba9848be59b a40320e8fe1049b42cdd2deb65dbc2b3d99dd9d4 ddb <ddb> 1520416525 +0700	commit: render NotificationScreen
+a40320e8fe1049b42cdd2deb65dbc2b3d99dd9d4 ece4830184f8efe30eac6dfea95f784da937c43a ddb <ddb> 1520507882 +0700	commit: define screen
+ece4830184f8efe30eac6dfea95f784da937c43a 03f1d5055b4f1e4ca97f6608cb7d79717e4936bd ddb <ddb> 1520589858 +0700	commit: add component & features docs

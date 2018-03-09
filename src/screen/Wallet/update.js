@@ -1,0 +1,62 @@
+import React from 'react'
+import { ScrollView, View } from 'react-native'
+import { Container, Text, InputBox, SelectBox, RoundedButton, RoundedStrokeButton, Button, TitleBox, ActionBox, SwitchBox } from '../../component/commons'
+import ModalNavBar from '../../component/navbar/modal'
+import { AreaSpline, Theme } from '../../component/chart'
+import TransactionItem from '../../component/transaction-item'
+import LinearGradient from 'react-native-linear-gradient'
+import { SCREEN_OPTIONS } from '../const'
+import icons from '../../config/icons'
+import styles from './styles'
+
+export default class UpdateWallet extends React.Component {
+    static navigatorStyle = {
+        ...SCREEN_OPTIONS.navBarHidden
+    }
+    _renderRightNavBar() {
+        return (
+            <Button text={'SAVE'} style={styles.button_navbar} textStyle={styles.button_navbar_text} />
+        )
+    }
+    render() {
+        return (
+            <Container>
+                <ModalNavBar
+                    onClose={() => this.close()}
+                    title={'EDIT WALLET'}
+                    renderRight={this._renderRightNavBar()}
+                />
+                <ScrollView>
+                    <View style={styles.cnw_block}>
+                        <View style={styles.cnw_block_content}>
+                            <TitleBox text={'SECURITY SETTINGS'} />
+                            <InputBox
+                                label={'Wallet Name'}
+                                placeholder={'Enter wallet name'}
+                            />
+                            <ActionBox text={'Backup Private Key'} />
+                            <SwitchBox text={'Push to mobile'} />
+                        </View>
+                    </View>
+                    <View style={[styles.cnw_block, { marginTop: 50 }]}>
+                        <View style={styles.cnw_block_content}>
+                            <RoundedStrokeButton
+                                onPress={() => this.addWallet()}
+                                style={styles.fixed_bottom_button}
+                                containerStyle={styles.done_button_container}
+                                text={'Delete Wallet'} />
+                        </View>
+                    </View>
+                </ScrollView>
+            </Container>
+        )
+    }
+    scanQRCode() {
+
+    }
+    close() {
+        this.props.navigator.dismissModal({
+            animationType: 'slide-down' // 'none' / 'slide-down' , dismiss animation for the modal (optional, default 'slide-down')
+        })
+    }
+}

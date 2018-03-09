@@ -1,0 +1,13 @@
+{
+    "eslint.enable": true,
+    "eslint.autoFixOnSave": true,
+    "editor.formatOnSave": true,
+    "javascript.validate.enable": false,
+    "files.associations": {
+        "*.js": "javascriptreact"
+    },
+    "files.exclude": {
+        "**/node_modules": true,
+        "**/.vscode": true
+    }
+}

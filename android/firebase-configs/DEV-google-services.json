@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "606006390446",
+    "firebase_url": "https://libertas-dev.firebaseio.com",
+    "project_id": "libertas-dev",
+    "storage_bucket": "libertas-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:606006390446:android:f2b3b1a075b8635a",
+        "android_client_info": {
+          "package_name": "com.libertas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "606006390446-g9guegh8bj3jpu48ue4ibf8kvg198ep0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDoYFh3A97TsjkbME3jtbea68zr8tJyhvE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
