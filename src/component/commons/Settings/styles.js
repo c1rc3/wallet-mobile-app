@@ -2,7 +2,7 @@ export default {
     input_box_container: {
         marginTop: 0,
         borderBottomWidth: 1,
-        borderColor: '#ffffff33',
+        borderColor: '#ffffff20',
         paddingTop: 8,
         paddingBottom: 6
     },
@@ -100,13 +100,23 @@ export default {
         borderWidth: 0,
         paddingLeft: 0,
         paddingRight: 0,
-        paddingTop: 10,
+        paddingTop: 6,
         paddingBottom: 6,
         height: 40,
         flexDirection: 'row'
     },
+    action_box_icon_container: {
+        width: 40,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    action_box_icon: {
+        width: 23,
+        height: 23
+    },
     action_box_content: {
         flex: 1,
+        justifyContent: 'center'
     },
     action_box_text: {
         fontSize: 14,
@@ -114,7 +124,8 @@ export default {
         fontStyle: 'normal',
         letterSpacing: 0,
         textAlign: 'left',
-        color: '#ffffff'
+        color: '#ffffff',
+        paddingLeft: 10
     },
     title_box: {
         borderWidth: 0,

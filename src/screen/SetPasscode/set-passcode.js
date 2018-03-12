@@ -8,7 +8,7 @@ import conf from '../../config'
 import Navigation from 'react-native-navigation'
 import { SCREEN_IDS, SCREEN_OPTIONS } from '../const'
 
-export class HomeScreen extends BaseScreen {
+export class SetPasscodeScreen extends BaseScreen {
     static navigatorStyle = {
         ...SCREEN_OPTIONS.navBarHidden
     }
@@ -47,4 +47,4 @@ export class HomeScreen extends BaseScreen {
     }
 }
 
-export default HomeScreen
+export default SetPasscodeScreen

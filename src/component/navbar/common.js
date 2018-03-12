@@ -15,6 +15,8 @@ export default class WalletDetailNavBar extends Component {
                 <View style={styles.title_container}>
                     <Text style={styles.title}>{this.props.title}</Text>
                 </View>
+                <View style={styles.right_button}>
+                </View>
             </View>
         )
     }

@@ -34,8 +34,18 @@ export class HomeScreen extends BaseScreen {
                 new WalletItem(),
             ]
         }
+        this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this))
     }
-
+    onNavigatorEvent(event) {
+        // handle a deep link
+        if (event.type == 'DeepLink') {
+            console.log('HomeScreen', event)
+            // const payload = event.payload // (optional) The payload
+            this.props.navigator.push({
+                screen: event.link
+            })
+        }
+    }
     render() {
         const height = 200
         const width = 500

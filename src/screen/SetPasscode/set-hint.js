@@ -9,7 +9,7 @@ import conf from '../../config'
 import { setPasscode } from '../../store/auth'
 import Navigation from 'react-native-navigation'
 
-export class HomeScreen extends BaseScreen {
+export class SetHintScreen extends BaseScreen {
     static navigatorStyle = {
         ...SCREEN_OPTIONS.navBarHidden
     }
@@ -41,4 +41,4 @@ export class HomeScreen extends BaseScreen {
     }
 }
 
-export default HomeScreen
+export default SetHintScreen

@@ -8,6 +8,10 @@ import { AUTH_STATUS } from '../../store/auth/const'
 import { SCREEN_IDS } from '../const'
 
 export default class LaunchScreen extends BaseScreen {
+    constructor(props) {
+        super(props)
+        // this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this))
+    }
     componentDidMount() {
         let lastedAuthState = {}
         authStore.subscribe(() => {
@@ -79,6 +83,20 @@ export default class LaunchScreen extends BaseScreen {
             lastedAppState = AppState.currentState
         })
     }
+    // this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this))
+    // onNavigatorEvent(event) {
+    //     debugger
+    //     // handle a deep link
+    //     if (event.type == 'DeepLink') {
+    //         console.log(event)
+    //         // const parts = event.link.split('/') // Link parts
+    //         // const payload = event.payload // (optional) The payload
+
+    //         // if (parts[0] == 'tab2') {
+    //         //     // handle the link somehow, usually run a this.props.navigator command
+    //         // }
+    //     }
+    // }
     render() {
         return (
             <Container>
