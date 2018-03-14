@@ -1,5 +1,5 @@
 import Logger from '../util/Logger'
-import ErrorBuilder from './Error'
+import errorBuilder from './Error'
 
 export class DataResponse {
     static error(error) {
@@ -15,7 +15,7 @@ export class DataResponse {
     set error(value) {
         if (value instanceof Error) {
             this._error = value
-            Logger.error(value)
+            Logger.error(value.toString())
         }
     }
     get error() {
@@ -36,9 +36,9 @@ export class SuccessReponse extends DataResponse {
 }
 
 export class ErrorResponse extends DataResponse {
-    constructor(code, msg) {
+    constructor(msg, code) {
         //gen error
-        super(null, ErrorBuilder.basic(code, msg))
+        super(null, errorBuilder.basic(code, msg))
     }
 }
 

@@ -15,7 +15,7 @@ const getItem = (key, parser) => {
                     resolve(new ErrorResponse(ex))
                 }
             } else {
-                resolve(new ErrorResponse(new Error(`Key=${key} is not existed`), 'GET', 'LocalStorage'))
+                resolve(new ErrorResponse(new Error(`LocalStorage::GET Key="${key}" is not existed`)))
             }
         })
     })
@@ -32,12 +32,26 @@ const setItem = (key, value) => {
     })
 }
 
+const mergeItem = (key, value) => {
+    return new Promise(resolve => {
+        AsyncStorage.mergeItem(key, value, (error) => {
+            if (error) {
+                resolve(new ErrorResponse(error))
+            }
+            resolve(new SuccessReponse())
+        })
+    })
+}
+
 export const LocalStorageService = {
     getObject(key) {
         return getItem(key, JSON.parse)
     },
     setObject(key, object) {
         return setItem(key, JSON.stringify(object))
+    },
+    mergeObject(key, object) {
+        return mergeItem(key, JSON.stringify(object))
     },
     getString(key) {
         return getItem(key)

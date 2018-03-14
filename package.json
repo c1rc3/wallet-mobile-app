@@ -21,6 +21,7 @@
     "d3-array": "^1.2.1",
     "d3-scale": "^1.0.7",
     "d3-shape": "^1.2.0",
+    "deneric": "0.0.2",
     "fs": "0.0.1-security",
     "lodash": "^4.17.4",
     "react": "16.0.0",
@@ -32,6 +33,7 @@
     "react-native-navigation": "^1.1.268",
     "react-native-qrcode": "^0.2.6",
     "react-native-swipeable": "^0.6.0",
+    "react-redux": "^5.0.7",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0"
@@ -47,6 +49,15 @@
     "react-test-renderer": "16.0.0"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "globals": {
+      "__DEV__": true
+    },
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    },
+    "transformIgnorePatterns": [
+      "node_modules/(?!react-native|deneric)/"
+    ]
   }
 }

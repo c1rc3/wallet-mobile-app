@@ -5,11 +5,10 @@ class DataError extends Error {
     }
 }
 
-export const ErrorBuilder = {
-    basic(errorCode, msg) {
+export const errorBuilder = {
+    basic: (errorCode, msg) => {
         return new DataError(errorCode, msg)
     }
 }
 
-
-export default ErrorBuilder
+export default errorBuilder
