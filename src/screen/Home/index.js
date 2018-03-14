@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, RoundedButton } from '../../component/commons'
+import { Container } from '../../component/commons'
 import HomeNavBar from '../../component/navbar/home-navbar'
 import { BaseScreen } from '../commons'
 import { SCREEN_OPTIONS, SCREEN_IDS } from '../const'
@@ -12,27 +12,20 @@ import Swipeable from 'react-native-swipeable'
 import ActionButton from 'react-native-action-button'
 import Icon from 'react-native-vector-icons/Ionicons'
 
+import { connect } from 'react-redux'
+import { getListWallets } from '../../store/wallet'
+
 import styles from './styles'
 
-class WalletItem {
-    ref = null
-}
-
-export class HomeScreen extends BaseScreen {
+class HomeScreen extends BaseScreen {
     static navigatorStyle = {
         ...SCREEN_OPTIONS.navBarHidden
     }
     constructor(props) {
         super(props)
         this.state = {
-            items: [
-                new WalletItem(),
-                new WalletItem(),
-                new WalletItem(),
-                new WalletItem(),
-                new WalletItem(),
-                new WalletItem(),
-            ]
+            mapWalletRef: {},
+            currentSwipeItemRef: null
         }
         this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this))
     }
@@ -141,8 +134,11 @@ export class HomeScreen extends BaseScreen {
     _renderItem(item, key) {
         return (
             <Swipeable onRef={ref => {
-                item.ref = ref
-                this.setState({ items: this.state.items })
+                this.setState({
+                    mapWalletRef: {
+                        [item.id]: ref
+                    }
+                })
             }}
                 onSwipeStart={() => this.onSwipeStart(item)}
                 rightButtons={this._renderRightButtons(item)} key={key}>
@@ -160,7 +156,7 @@ export class HomeScreen extends BaseScreen {
     }
 
     _renderItems() {
-        return this.state.items.map((item, key) => this._renderItem(item, key))
+        return this.props.wallets.map((item, key) => this._renderItem(item, key))
     }
 
     showSideBar() {
@@ -191,19 +187,32 @@ export class HomeScreen extends BaseScreen {
 
     //
     onScroll() {
-        this.state.items.forEach(item => {
-            item.ref.recenter()
-        })
+        this.recenterSwipeItem()
     }
-
-    onSwipeStart(item) {
-        this.state.items.forEach(i => {
-            if (item != i) {
-                i.ref.recenter()
-            }
+    recenterSwipeItem() {
+        if (this.state.currentSwipeItemRef) {
+            this.state.currentSwipeItemRef.recenter()
+            this.setState({
+                currentSwipeItemRef: null
+            })
+        }
+    }
+    onSwipeStart(item = {}) {
+        this.recenterSwipeItem()
+        this.setState({
+            currentSwipeItemRef: this.state.mapWalletRef[item.id]
         })
     }
     //wallet actions
+    componentDidMount() {
+        console.log('componentDidMount')
+        console.log(this.props)
+        getListWallets()
+        // this.getWallets()
+    }
+    getWallets() {
+        getListWallets()
+    }
     send() {
         this.props.navigator.showModal({
             screen: SCREEN_IDS.walletSend
@@ -221,4 +230,4 @@ export class HomeScreen extends BaseScreen {
     }
 }
 
-export default HomeScreen
+export default connect(state => state)(HomeScreen)

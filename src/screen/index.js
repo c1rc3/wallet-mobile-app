@@ -1,4 +1,7 @@
 import { Navigation } from 'react-native-navigation'
+import { Provider } from 'react-redux'
+import walletStore from '../store/wallet'
+
 import HomeScreen from './Home'
 import WelcomeScreen from './Welcome'
 import UnlockScreen from './Unlock'
@@ -19,7 +22,7 @@ import SettingsScreen from './Settings'
 import { SCREEN_IDS, COMPONENT_IDS } from './const'
 
 export function registerScreens() {
-    Navigation.registerComponent(SCREEN_IDS.home, () => HomeScreen)
+    Navigation.registerComponent(SCREEN_IDS.home, () => HomeScreen, walletStore, Provider)
     Navigation.registerComponent(SCREEN_IDS.welcome, () => WelcomeScreen)
     Navigation.registerComponent(SCREEN_IDS.unlock, () => UnlockScreen)
     Navigation.registerComponent(SCREEN_IDS.setPasscode, () => SetPasscodeScreen)
