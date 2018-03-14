@@ -7,9 +7,9 @@ import reducer from './reducers'
 const walletStore = createStore(reducer, applyMiddleware(thunk, logger))
 
 export const getListWallets = () => walletStore.dispatch(actions.getListWallets())
-// export const setPasscode = (passcode, hint) => authStore.dispatch(actions.setPasscode(passcode, hint))
-// export const unlock = (passcode) => authStore.dispatch(actions.unlockWallet(passcode))
-// export const lockWallet = () => authStore.dispatch(actions.lockWallet())
-// export const getHint = () => actions.getHint()
+export const getWallet = id => actions.getWallet(id)
+export const updateWallet = info => walletStore.dispatch(actions.updateWallet(info))
+export const addWallet = info => walletStore.dispatch(actions.addWallet(info))
+export const deleteWallet = id => walletStore.dispatch(actions.deleteWallet(id))
 
 export default walletStore
