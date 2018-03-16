@@ -6,6 +6,9 @@ import { AppState } from 'react-native'
 import authStore, { checkRegistered, lockWallet } from '../../store/auth'
 import { AUTH_STATUS } from '../../store/auth/const'
 import { SCREEN_IDS } from '../const'
+import JailMonkey from 'jail-monkey'
+
+console.warn('isJailBroken', JailMonkey.isJailBroken())
 
 export default class LaunchScreen extends BaseScreen {
     constructor(props) {

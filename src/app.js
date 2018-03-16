@@ -1,3 +1,4 @@
+import 'react-native'
 import conf from './config'
 import Logger from './util/Logger'
 import { Navigation } from 'react-native-navigation'
