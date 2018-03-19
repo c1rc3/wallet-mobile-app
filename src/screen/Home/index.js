@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container } from '../../component/commons'
+import { Container, Icon } from '../../component/commons'
 import HomeNavBar from '../../component/navbar/home-navbar'
 import { BaseScreen } from '../commons'
 import { SCREEN_OPTIONS, SCREEN_IDS } from '../const'
@@ -10,10 +10,13 @@ import WalletSwipeAction from '../../component/wallet-item/swipe-action'
 import LinearGradient from 'react-native-linear-gradient'
 import Swipeable from 'react-native-swipeable'
 import ActionButton from 'react-native-action-button'
-import Icon from 'react-native-vector-icons/Ionicons'
+
+import icons from '../../config/icons'
+// import Icon from 'react-native-vector-icons/Ionicons'
 
 import { connect } from 'react-redux'
 import { getListWallets } from '../../store/wallet'
+import { WalletInfo } from '../../service/Wallet'
 
 import styles from './styles'
 
@@ -95,7 +98,12 @@ class HomeScreen extends BaseScreen {
                 lineHeight: 54
             },
             offsetX: 30,
-            offsetY: 30
+            offsetY: 30,
+            renderIcon() {
+                return (
+                    <Icon source={icons.new_chat} style={styles.action_button_icon} />
+                )
+            }
         }
         let item_options = {
             buttonColor: '#5d95ea',
@@ -107,19 +115,19 @@ class HomeScreen extends BaseScreen {
         return (
             <ActionButton {...containerOptions}>
                 <ActionButton.Item {...item_options} title={'IMPORT FROM BACKUP FILE'} key={0} >
-                    <Icon name="md-create" style={styles.action_button_icon} />
+                    <Icon source={icons.file} style={styles.action_button_icon} />
                 </ActionButton.Item>
                 <ActionButton.Item {...item_options} title={'IMPORT FROM SEED WORDS'} key={1} >
-                    <Icon name="md-notifications-off" style={styles.action_button_icon} />
+                    <Icon source={icons.words} style={styles.action_button_icon} />
                 </ActionButton.Item>
                 <ActionButton.Item {...item_options} title={'IMPORT FROM PRIVATE KEY'} key={2} >
-                    <Icon name="md-done-all" style={styles.action_button_icon} />
+                    <Icon source={icons.key} style={styles.action_button_icon} />
                 </ActionButton.Item>
                 <ActionButton.Item {...item_options}
                     onPress={() => this.createNewWallet()}
                     title={'CREATE NEW WALLET'}
                     key={3} >
-                    <Icon name="md-done-all" style={styles.action_button_icon} />
+                    <Icon source={icons.wallet} style={styles.action_button_icon} />
                 </ActionButton.Item>
             </ActionButton>
         )
@@ -149,14 +157,22 @@ class HomeScreen extends BaseScreen {
 
     _renderRightButtons(item) {
         return [
-            <WalletSwipeAction onPress={() => this.send(item)} key={0} index={0} text={'Send'} />,
-            <WalletSwipeAction onPress={() => this.receive(item)} key={1} index={1} text={'Receive'} />,
-            <WalletSwipeAction onPress={() => this.updateWallet(item)} key={2} index={2} text={'Edit'} />,
+            <WalletSwipeAction icon={icons.send} onPress={() => this.send(item)} key={0} index={0} text={'Send'} />,
+            <WalletSwipeAction icon={icons.receive} onPress={() => this.receive(item)} key={1} index={1} text={'Receive'} />,
+            <WalletSwipeAction icon={icons.edit} onPress={() => this.updateWallet(item)} key={2} index={2} text={'Edit'} />,
         ]
     }
 
     _renderItems() {
-        return this.props.wallets.map((item, key) => this._renderItem(item, key))
+        // return this.props.wallets.map((item, key) => this._renderItem(item, key))
+        return (
+            [
+                new WalletInfo(),
+                new WalletInfo(),
+                new WalletInfo(),
+                new WalletInfo(),
+            ]
+        ).map((item, key) => this._renderItem(item, key))
     }
 
     showSideBar() {
