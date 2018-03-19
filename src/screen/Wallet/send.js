@@ -21,7 +21,7 @@ export default class CreateNewWallet extends React.Component {
                                 label={'Send to'}
                                 placeholder={'Enter the receiver\'s address or scan QR code'}
                                 rightAction={() => this.scanQRCode()}
-                                rightActionIcon={icons.backspace}
+                                rightActionIcon={icons.qr}
                             />
                             <SettingInput label={'Amount'} placeholder={'0.0'} />
                         </View>

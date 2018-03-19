@@ -7,13 +7,16 @@ export default {
     },
     left_button: {
         width: 70,
+        height: 44,
         justifyContent: 'center',
-        alignItems: 'flex-start'
+        alignItems: 'flex-start',
     },
     right_button: {
         width: 70,
+        height: 44,
         justifyContent: 'center',
-        alignItems: 'flex-end'
+        alignItems: 'flex-end',
+        flexDirection: 'row'
     },
     title_container: {
         flex: 1,
@@ -21,11 +24,15 @@ export default {
         alignItems: 'center',
         height: 44,
         paddingTop: 10,
-        paddingBottom: 10
+        paddingBottom: 10,
     },
     title: {
         fontSize: 14,
         height: 24,
         lineHeight: 24
+    },
+    close_icon: {
+        width: 14,
+        height: 14
     }
 }

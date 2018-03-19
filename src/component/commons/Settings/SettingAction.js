@@ -29,7 +29,7 @@ export class SettingAction extends Component {
                             </Text>
                         </View>
                         {this.props.caret ? <View style={styles.select_box_caret}>
-                            <Icon source={icons.backspace} style={styles.select_box_caret_icon} />
+                            <Icon source={icons.right_arrow} style={styles.select_box_caret_icon} />
                         </View> : null}
                     </View>
                 </Touchable>

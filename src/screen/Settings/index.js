@@ -16,15 +16,14 @@ export default class SettingsScreen extends Component {
         return (
             <Container>
                 <CommonNavBar onBack={() => this.props.navigator.pop()} title={'SETTINGS'} />
-                <ScrollView>
-                    <SettingAction icon={icons.backspace} text={'Security'} />
-                    <SettingAction icon={icons.backspace} text={'Notifications'} />
-                    <SettingAction icon={icons.backspace} text={'Transaction Category'} />
-                    <SettingAction icon={icons.backspace} text={'Backup'} />
-                    <SettingAction icon={icons.backspace} text={'Restore'} />
-                    <SettingAction icon={icons.backspace} text={'Change Device'} />
-                    <SettingAction icon={icons.backspace} text={'Widget'} />
-                    <SettingAction icon={icons.backspace} text={'Factory Reset'} caret={false} />
+                <ScrollView style={styles.container}>
+                    <SettingAction icon={icons.key2} text={'Security'} />
+                    <SettingAction icon={icons.bell} text={'Notifications'} />
+                    <SettingAction icon={icons.cloud_up} text={'Backup'} />
+                    <SettingAction icon={icons.cloud_down} text={'Restore'} />
+                    <SettingAction icon={icons.smartphone} text={'Change Device'} />
+                    <SettingAction icon={icons.widget} text={'Widget'} />
+                    <SettingAction icon={icons.factory} text={'Factory Reset'} caret={false} />
                 </ScrollView>
             </Container>
         )

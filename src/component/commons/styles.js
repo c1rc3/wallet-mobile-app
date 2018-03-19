@@ -28,11 +28,12 @@ export default StyleSheet.create({
     button_icon: {
         padding: 10,
         height: 44,
-        width: 44
+        width: 44,
+        justifyContent: 'center'
     },
     button_icon_image: {
-        width: 24,
-        height: 24,
+        width: 22,
+        height: 22,
         resizeMode: 'contain'
     },
     nav_button_container: {

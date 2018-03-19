@@ -20,9 +20,8 @@ export default {
         opacity: 0
     },
     action_button_icon: {
-        fontSize: 24,
-        height: 24,
-        color: 'white',
+        width: 24,
+        height: 24
     },
     action_button_text_container: {
         borderWidth: 0,
