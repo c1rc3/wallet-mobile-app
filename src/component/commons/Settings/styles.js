@@ -82,6 +82,24 @@ export default {
     select_box_content: {
         flex: 1,
     },
+    select_box_text: {
+        fontSize: 16,
+        fontWeight: '600',
+        fontStyle: 'normal',
+        letterSpacing: 0,
+        textAlign: 'left',
+        color: '#ffffff'
+    },
+    select_box_item: {
+        height: 34,
+        width: '100%',
+        borderBottomWidth: 0.2,
+        borderBottomColor: '#fff',
+        justifyContent: 'center'
+    },
+    select_box_item_text: {
+
+    },
     select_box_caret: {
         width: 30,
         justifyContent: 'center',
@@ -90,6 +108,24 @@ export default {
     select_box_caret_icon: {
         width: 14,
         height: 14
+    },
+    select_box_modal_container: {
+        flex: 1,
+        backgroundColor: '#000000dd',
+        paddingTop: 22,
+        paddingLeft: 20,
+        paddingRight: 20,
+        paddingBottom: 16,
+        justifyContent: 'flex-end',
+        alignItems: 'center'
+    },
+    select_box_modal_close_btn: {
+        width: 179,
+        height: 34,
+        borderRadius: 24,
+        borderWidth: 0.5,
+        borderColor: '#ffffff',
+        marginTop: 20
     },
     switch_box_switch: {
         width: 60,

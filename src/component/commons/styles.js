@@ -6,7 +6,9 @@ export default StyleSheet.create({
         fontFamily: 'Montserrat'
     },
     button: {
-        padding: 10
+        padding: 10,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     button_rounded: {
         height: 34,
