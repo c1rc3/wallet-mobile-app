@@ -85,7 +85,7 @@ export class SettingSelect extends Component {
                             {this._renderSelectedItem()}
                         </View>
                         <View style={styles.select_box_caret}>
-                            <Icon source={icons.backspace} style={styles.select_box_caret_icon} />
+                            <Icon source={icons.dropdown} style={styles.select_box_caret_icon} />
                         </View>
                     </View>
                     <SettingItemsModal

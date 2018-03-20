@@ -5,7 +5,7 @@ import ModalNavBar from '../../component/navbar/modal'
 import LinearGradient from 'react-native-linear-gradient'
 import { SCREEN_OPTIONS } from '../const'
 import styles from './styles'
-import { WalletInfo } from '../../store/wallet'
+import { WalletInfo } from '../../service/Wallet'
 
 export default class CreateNewWallet extends React.Component {
     static navigatorStyle = {
@@ -26,11 +26,8 @@ export default class CreateNewWallet extends React.Component {
                 <ScrollView>
                     <View style={styles.cnw_block}>
                         <View style={styles.cnw_block_content}>
-                            <SettingInput value={model.name} onChange={value => this._changeName(value)} label={'Wallet Name'} placeholder={'Enter your wallet name'} />
-                            <SettingSelect onChangeValue={language => {
-                                console.log(language)
-                                this.setState({ language })
-                            }} selectedValue={this.state.language} label={'Type'} placeholder={'Choose wallet type'}>
+                            <SettingInput value={model.name} onChangeText={value => this._changeName(value)} label={'Wallet Name'} placeholder={'Enter your wallet name'} />
+                            <SettingSelect selectedValue={model.type} onChangeValue={value => this._changeType(value)} label={'Type'} placeholder={'Choose wallet type'}>
                                 <SettingSelect.Item label={'Bitcoin'} value={'btc'} />
                                 <SettingSelect.Item label={'Ethereum'} value={'eth'} />
                                 <SettingSelect.Item label={'Ripple'} value={'rxp'} />
@@ -52,15 +49,15 @@ export default class CreateNewWallet extends React.Component {
         let model = this.state.model
         model.name = value || ''
         this.setState({ model })
+        console.log(model)
     }
     _changeType(value) {
         let model = this.state.model
         model.type = value || ''
         this.setState({ model })
+        console.log(model)
     }
     close() {
-        this.props.navigator.dismissModal({
-            animationType: 'slide-down' // 'none' / 'slide-down' , dismiss animation for the modal (optional, default 'slide-down')
-        })
+        this.props.navigator.dismissModal()
     }
 }
