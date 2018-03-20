@@ -7,6 +7,16 @@ export const WALLET = {
     store_key: {
         list_wallets: '__LIST_WALLETS',
         wallet_detail_prefix: '__WALLET_DETAIL_'
+    },
+    type: {
+        bitcoin: 'btc',
+        ethereum: 'eth',
+        ripple: 'xrp',
+    },
+    type_name: {
+        'btc': 'Bitcoin',
+        'eth': 'Ethereum',
+        'xrp': 'Ripple',
     }
 }
 
@@ -27,6 +37,13 @@ export class WalletInfo extends deneric.Entity {
 }
 
 const _instance = {
+    getTypes() {
+        let ids = [WALLET.type.bitcoin, WALLET.type.ethereum, WALLET.type.ripple]
+        return ids.map(id => ({
+            id: id,
+            name: WALLET.type_name[id]
+        }))
+    },
     genId() {
         return `${+new Date()}`
     },

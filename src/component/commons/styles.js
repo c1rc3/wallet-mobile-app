@@ -64,7 +64,11 @@ export default StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#253042',
-        paddingTop: 22
+        // paddingTop: 22
+    },
+    scroll_container: {
+        flex: 1,
+        backgroundColor: '#253042',
     },
     scroll_view: {
         flex: 1,

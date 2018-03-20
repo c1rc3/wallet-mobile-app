@@ -182,5 +182,52 @@ export default {
         textAlign: 'right',
         color: '#4fccff',
         paddingRight: 10
+    },
+    add_success_container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    add_success_icon: {
+        marginTop: '16%',
+        marginBottom: 37,
+    },
+    add_success_title: {
+        fontSize: 16,
+        fontWeight: '600',
+        fontStyle: 'normal',
+        letterSpacing: 0,
+        textAlign: 'center',
+        color: '#ffffff',
+        paddingLeft: 40,
+        paddingRight: 40,
+        marginBottom: 14
+    },
+    add_success_msg: {
+        paddingLeft: 40,
+        paddingRight: 40,
+        fontSize: 14,
+        fontWeight: 'normal',
+        fontStyle: 'normal',
+        lineHeight: 16,
+        letterSpacing: -0.09,
+        textAlign: 'center',
+        color: '#ffffff',
+    },
+    add_success_btns: {
+        marginTop: 46,
+        paddingLeft: 40,
+        paddingRight: 40,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+    add_success_btn_container: {
+        width: null,
+        flex: 1
+    },
+    add_success_btn: {
+        width: 'auto',
+        marginLeft: 7.5,
+        marginRight: 7.5,
     }
 }

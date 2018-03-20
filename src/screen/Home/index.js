@@ -164,15 +164,7 @@ class HomeScreen extends BaseScreen {
     }
 
     _renderItems() {
-        // return this.props.wallets.map((item, key) => this._renderItem(item, key))
-        return (
-            [
-                new WalletInfo(),
-                new WalletInfo(),
-                new WalletInfo(),
-                new WalletInfo(),
-            ]
-        ).map((item, key) => this._renderItem(item, key))
+        return this.props.wallets.map((item, key) => this._renderItem(item, key))
     }
 
     showSideBar() {
@@ -224,6 +216,9 @@ class HomeScreen extends BaseScreen {
         console.log('componentDidMount')
         console.log(this.props)
         getListWallets()
+        this.props.navigator.showModal({
+            screen: SCREEN_IDS.addWalletSuccess
+        })
         // this.getWallets()
     }
     getWallets() {

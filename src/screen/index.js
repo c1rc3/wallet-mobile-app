@@ -13,7 +13,8 @@ import HomeNavBarScreen from '../component/navbar/home-navbar'
 import WalletDetailScreen from './Wallet/detail'
 import LeftSideBar from './LeftSideBar'
 import NofiticationScreen from './Notification'
-import CreateNewWallet from './Wallet/create-new'
+import CreateNewWalletScreen from './Wallet/create-new'
+import AddWalletSuccessScreen from './Wallet/add-success'
 import WalletReceiveScreen from './Wallet/receive'
 import WalletSendScreen from './Wallet/send'
 import UpdateWalletScreen from './Wallet/update'
@@ -34,7 +35,8 @@ export function registerScreens() {
     Navigation.registerComponent(SCREEN_IDS.walletReceive, () => WalletReceiveScreen)
     Navigation.registerComponent(SCREEN_IDS.walletSend, () => WalletSendScreen)
     Navigation.registerComponent(SCREEN_IDS.updateWallet, () => UpdateWalletScreen)
-    Navigation.registerComponent(SCREEN_IDS.createNewWallet, () => CreateNewWallet)
+    Navigation.registerComponent(SCREEN_IDS.createNewWallet, () => CreateNewWalletScreen)
+    Navigation.registerComponent(SCREEN_IDS.addWalletSuccess, () => AddWalletSuccessScreen)
     Navigation.registerComponent(SCREEN_IDS.settings, () => SettingsScreen)
 
     Navigation.registerComponent(SCREEN_IDS.leftSideBar, () => LeftSideBar)

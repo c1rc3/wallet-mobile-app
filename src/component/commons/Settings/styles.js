@@ -106,8 +106,8 @@ export default {
         alignItems: 'center'
     },
     select_box_caret_icon: {
-        width: 14,
-        height: 14
+        width: 8,
+        height: 8
     },
     select_box_modal_container: {
         flex: 1,

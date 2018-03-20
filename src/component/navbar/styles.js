@@ -1,9 +1,11 @@
 export default {
     container: {
-        height: 48,
+        paddingTop: 22,
+        height: 70,
         flexDirection: 'row',
         paddingLeft: 10,
-        paddingRight: 10
+        paddingRight: 10,
+        backgroundColor: '#253042'
     },
     left_button: {
         width: 70,

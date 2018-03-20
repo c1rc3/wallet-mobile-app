@@ -13,6 +13,7 @@ export const SCREEN_IDS = {
     walletReceive: 'wallet.Receive',
     walletSend: 'wallet.Send',
     createNewWallet: 'wallet.CreateNew',
+    addWalletSuccess: 'wallet.AddWalletSuccess',
     updateWallet: 'wallet.Update',
     settings: 'main.Settings'
 }
