@@ -10,7 +10,7 @@ export default class ModalNavBar extends Component {
         return (
             <View style={styles.container}>
                 <View style={styles.left_button}>
-                    <ButtonIcon onPress={this.props.onClose} icon={icons.backspace} />
+                    <ButtonIcon onPress={this.props.onClose} icon={icons.close} iconStyle={styles.close_icon} />
                 </View>
                 <View style={styles.title_container}>
                     <Text style={styles.title}>{this.props.title}</Text>

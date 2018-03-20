@@ -10,13 +10,14 @@ export default class WalletDetailNavBar extends Component {
         return (
             <View style={styles.container}>
                 <View style={styles.left_button}>
-                    <ButtonIcon onPress={this.props.onBack} icon={icons.backspace} />
+                    <ButtonIcon onPress={this.props.onBack} icon={icons.back} />
                 </View>
                 <View style={styles.title_container}>
                     <Text style={styles.title}>{this.props.title}</Text>
                 </View>
                 <View style={styles.right_button}>
-                    <ButtonIcon onPress={this.props.onNotification} icon={icons.backspace} />
+                    <ButtonIcon onPress={this.props.onEdit} icon={icons.edit} />
+                    <ButtonIcon onPress={this.props.onQr} icon={icons.qr} />
                 </View>
             </View>
         )

@@ -10,13 +10,13 @@ export default class HomeNavBar extends Component {
         return (
             <View style={styles.container}>
                 <View style={styles.left_button}>
-                    <ButtonIcon onPress={this.props.onNavLeft} icon={icons.backspace} />
+                    <ButtonIcon onPress={this.props.onNavLeft} icon={icons.menu} />
                 </View>
                 <View style={styles.title_container}>
                     <Text style={styles.title}>WALLET</Text>
                 </View>
                 <View style={styles.right_button}>
-                    <ButtonIcon onPress={this.props.onNotification} icon={icons.backspace} />
+                    <ButtonIcon onPress={this.props.onNotification} icon={icons.notification} />
                 </View>
             </View>
         )

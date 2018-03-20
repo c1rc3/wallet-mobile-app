@@ -49,7 +49,9 @@ class WalletOverview extends React.Component {
                             </View>
                             <View style={[styles.wallet_overview_info_row, styles.wallet_overview_info_spacing]}>
                                 <Text style={styles.wallet_overview_info_amount}>8.1371516</Text>
-                                <Text style={styles.wallet_overview_info_ratio}>10%</Text>
+                                <Text style={styles.wallet_overview_info_ratio}>
+                                    10%
+                                </Text>
                             </View>
                         </View>
                     </View>
