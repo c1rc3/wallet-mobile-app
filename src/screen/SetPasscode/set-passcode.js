@@ -1,14 +1,14 @@
 import React from 'react'
 import View from 'react-native'
 import { Text, Input, Button, Container, Alert } from '../../component/commons'
-import { BaseScreen } from '../commons'
+import { CommonScreen } from '../commons'
 import PasscodeComp from '../../component/passcode'
 import Passcode from '../../service/Passcode'
 import conf from '../../config'
 import Navigation from 'react-native-navigation'
 import { SCREEN_IDS, SCREEN_OPTIONS } from '../const'
 
-export class SetPasscodeScreen extends BaseScreen {
+export class SetPasscodeScreen extends CommonScreen {
     static navigatorStyle = {
         ...SCREEN_OPTIONS.navBarHidden
     }

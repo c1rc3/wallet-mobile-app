@@ -1,5 +1,5 @@
 import React from 'react'
-import { BaseScreen } from '../commons'
+import { CommonScreen } from '../commons'
 import { Text, Container } from '../../component/commons'
 import { SCREEN_OPTIONS } from '../const'
 import { AppState } from 'react-native'
@@ -10,61 +10,74 @@ import JailMonkey from 'jail-monkey'
 
 console.warn('isJailBroken', JailMonkey.isJailBroken())
 
-export default class LaunchScreen extends BaseScreen {
+export default class LaunchScreen extends CommonScreen {
     constructor(props) {
         super(props)
         // this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this))
     }
     componentDidMount() {
+        // let mainScreen = SCREEN_IDS.transactionMonitor
+        let mainScreen = SCREEN_IDS.addTransactionMonitorConfirm
         let lastedAuthState = {}
         authStore.subscribe(() => {
             let state = authStore.getState()
-            if (lastedAuthState.status === state.status) return
-            switch (state.status) {
-                case AUTH_STATUS.IS_AUTH:
-                    if (lastedAuthState.status === AUTH_STATUS.IS_LOCKED) {
-                        this.props.navigator.dismissModal({
-                            animationType: 'slide-down'
-                        })
-                    } else {
+            if (state.is_auth) {
+                if (lastedAuthState.status === state.status) return
+                switch (state.status) {
+                    case AUTH_STATUS.IS_AUTH:
+                        if (lastedAuthState.status === AUTH_STATUS.IS_LOCKED) {
+                            this.props.navigator.dismissModal({
+                                animationType: 'slide-down'
+                            })
+                        } else {
+                            this.props.navigator.resetTo({
+                                screen: mainScreen,
+                                title: 'HOME',
+                                navigatorStyle: {
+                                    ...SCREEN_OPTIONS.navBarHidden
+                                },
+                                animationType: 'slide-down'
+                            })
+                        }
+                        break
+                    case AUTH_STATUS.NOT_AUTH:
                         this.props.navigator.resetTo({
-                            screen: SCREEN_IDS.home,
-                            title: 'HOME',
+                            screen: SCREEN_IDS.unlock,
+                            title: 'Login',
                             navigatorStyle: {
                                 ...SCREEN_OPTIONS.navBarHidden
                             },
                             animationType: 'slide-down'
                         })
-                    }
-                    break
-                case AUTH_STATUS.NOT_AUTH:
-                    this.props.navigator.resetTo({
-                        screen: SCREEN_IDS.unlock,
-                        title: 'Login',
-                        navigatorStyle: {
-                            ...SCREEN_OPTIONS.navBarHidden
-                        },
-                        animationType: 'slide-down'
-                    })
-                    break
-                case AUTH_STATUS.NOT_REGISTERED:
-                    this.props.navigator.resetTo({
-                        screen: SCREEN_IDS.setPasscode,
-                        title: 'SET PASSCODE',
-                        navigatorStyle: {
-                            ...SCREEN_OPTIONS.navBarHidden
-                        },
-                        animationType: 'slide-down'
-                    })
-                case AUTH_STATUS.IS_LOCKED:
-                    this.props.navigator.showModal({
-                        screen: SCREEN_IDS.unlock,
-                        title: 'Login',
-                        navigatorStyle: {
-                            ...SCREEN_OPTIONS.navBarHidden
-                        },
-                        animationType: 'slide-down'
-                    })
+                        break
+                    case AUTH_STATUS.NOT_REGISTERED:
+                        this.props.navigator.resetTo({
+                            screen: SCREEN_IDS.setPasscode,
+                            title: 'SET PASSCODE',
+                            navigatorStyle: {
+                                ...SCREEN_OPTIONS.navBarHidden
+                            },
+                            animationType: 'slide-down'
+                        })
+                    case AUTH_STATUS.IS_LOCKED:
+                        this.props.navigator.showModal({
+                            screen: SCREEN_IDS.unlock,
+                            title: 'Login',
+                            navigatorStyle: {
+                                ...SCREEN_OPTIONS.navBarHidden
+                            },
+                            animationType: 'slide-down'
+                        })
+                }
+            } else {
+                this.props.navigator.resetTo({
+                    screen: mainScreen,
+                    title: 'HOME',
+                    navigatorStyle: {
+                        ...SCREEN_OPTIONS.navBarHidden
+                    },
+                    animationType: 'slide-down'
+                })
             }
             lastedAuthState = {
                 ...state

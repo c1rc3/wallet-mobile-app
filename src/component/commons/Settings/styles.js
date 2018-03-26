@@ -188,5 +188,30 @@ export default {
         fontWeight: '500',
         textAlign: 'left',
         color: '#ffffff'
+    },
+    desc_box_container: {
+        marginTop: 0,
+        paddingTop: 14,
+        paddingBottom: 6
+    },
+    desc_box: {
+        borderWidth: 0,
+        paddingLeft: 0,
+        paddingRight: 0,
+        flexDirection: 'row'
+    },
+    desc_box_content: {
+        borderWidth: 0,
+        paddingLeft: 0,
+        paddingRight: 0,
+        flexDirection: 'row'
+    },
+    desc_box_text: {
+        height: 15,
+        opacity: 0.5,
+        fontSize: 12,
+        fontWeight: '500',
+        textAlign: 'left',
+        color: '#ffffff'
     }
 }

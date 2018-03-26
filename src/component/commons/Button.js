@@ -37,6 +37,16 @@ export class RoundedButton extends Component {
     }
 }
 
+export class DashedButton extends Component {
+    render() {
+        return (
+            <Touchable style={[styles.button_dashed_container, this.props.containerStyle]} onPress={this.props.onPress}>
+                <Text style={[styles.button_dashed, this.props.style]}>{this.props.text}</Text>
+            </Touchable>
+        )
+    }
+}
+
 export class RoundedStrokeButton extends Component {
     render() {
         return (

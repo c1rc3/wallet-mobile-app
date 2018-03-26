@@ -4,7 +4,7 @@ import {
     StyleSheet,
     View
 } from 'react-native'
-import { BaseScreen } from '../commons'
+import { CommonScreen } from '../commons'
 
 import { Text } from '../../component/commons'
 // import Params from './misc/Param'
@@ -15,7 +15,7 @@ const instructions = Platform.select({
         'Shake or press menu button for dev menu',
 })
 
-export default class Welcome extends BaseScreen {
+export default class Welcome extends CommonScreen {
     render() {
 
         return (

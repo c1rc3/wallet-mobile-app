@@ -10,6 +10,24 @@ export default StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
+    button_dashed_container: {
+        borderWidth: 1,
+        borderColor: '#505967',
+        borderStyle: 'dashed',
+    },
+    button_dashed: {
+        height: 48,
+        lineHeight: 46,
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontFamily: 'Montserrat',
+        fontSize: 12,
+        fontWeight: 'normal',
+        fontStyle: 'normal',
+        letterSpacing: 0,
+        textAlign: 'center',
+        color: '#ffffff80',
+    },
     button_rounded: {
         height: 34,
         width: 179,
@@ -94,6 +112,21 @@ export default StyleSheet.create({
         paddingRight: 0,
         paddingTop: 10,
         paddingBottom: 10
+    },
+    rounded_input: {
+        borderWidth: 0,
+        height: 36,
+        borderRadius: 18,
+        backgroundColor: 'rgba(255, 255, 255, 0.15)',
+        fontFamily: 'Montserrat',
+        fontSize: 14,
+        fontWeight: '500',
+        fontStyle: 'normal',
+        letterSpacing: 0,
+        textAlign: 'left',
+        color: '#ffffff',
+        paddingLeft: 16,
+        paddingRight: 16,
     },
     qrcode_container: {
         justifyContent: 'center',

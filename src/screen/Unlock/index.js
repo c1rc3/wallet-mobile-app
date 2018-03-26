@@ -1,11 +1,11 @@
 import React from 'react'
 import { Text, Input, Button, Container, Alert } from '../../component/commons'
-import { BaseScreen } from '../commons'
+import { CommonScreen } from '../commons'
 import PasscodeComp from '../../component/passcode'
 import conf from '../../config'
 import { unlock, getHint } from '../../store/auth'
 
-export class HomeScreen extends BaseScreen {
+export class HomeScreen extends CommonScreen {
     static navigatorStyle = {
         // navBarHidden: true
     }

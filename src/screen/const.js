@@ -15,7 +15,14 @@ export const SCREEN_IDS = {
     createNewWallet: 'wallet.CreateNew',
     addWalletSuccess: 'wallet.AddWalletSuccess',
     updateWallet: 'wallet.Update',
-    settings: 'main.Settings'
+    settings: 'main.Settings',
+    transactionMonitor: 'txmonitor.Home',
+    addTransactionMonitor: 'txmonitor.Add',
+    addTransactionMonitorSelectCoin: 'txmonitor.Add.SelectCoin',
+    addTransactionMonitorInputAddress: 'txmonitor.Add.InputAddress',
+    addTransactionMonitorSelectToken: 'txmonitor.Add.SelectToken',
+    addTransactionMonitorConfirm: 'txmonitor.Add.Confirm',
+    editTransactionMonitor: 'txmonitor.Edit',
 }
 
 export const COMPONENT_IDS = {

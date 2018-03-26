@@ -1,0 +1,17 @@
+[{
+    "name": "Bitcoin",
+    "short_name": "BTC",
+    "symbol": "BTC",
+    "rank": 1,
+    "slug": "bitcoin",
+    "tokens": ["Bitcoin", "bitcoin", "BTC"],
+    "id": 1
+}, {
+    "name": "Ethereum / ERC20",
+    "short_name": "ETH/ERC20",
+    "symbol": "ETH",
+    "rank": 2,
+    "slug": "ethereum",
+    "tokens": ["Ethereum", "ethereum", "ETH"],
+    "id": 1027
+}]

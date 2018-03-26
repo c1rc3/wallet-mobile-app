@@ -10,4 +10,10 @@ export class Input extends Component {
     }
 }
 
+export class RoundedInput extends Component {
+    render() {
+        return <RNTextInput {...this.props} style={[styles.rounded_input, this.props.style]} clearButtonMode={'always'} underlineColorAndroid={'transparent'} />
+    }
+}
+
 export default Input

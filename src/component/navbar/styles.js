@@ -33,8 +33,16 @@ export default {
         height: 24,
         lineHeight: 24
     },
+    icon: {
+        width: 22,
+        height: 22
+    },
     close_icon: {
         width: 14,
         height: 14
+    },
+    create_icon: {
+        width: 18,
+        height: 18
     }
 }

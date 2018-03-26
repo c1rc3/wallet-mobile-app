@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Icon } from '../../component/commons'
 import HomeNavBar from '../../component/navbar/home-navbar'
-import { BaseScreen } from '../commons'
+import { CommonScreen } from '../commons'
 import { SCREEN_OPTIONS, SCREEN_IDS } from '../const'
 import { ScrollView, View } from 'react-native'
 import { Pie, Theme } from '../../component/chart'
@@ -20,7 +20,7 @@ import { WalletInfo } from '../../service/Wallet'
 
 import styles from './styles'
 
-class HomeScreen extends BaseScreen {
+class HomeScreen extends CommonScreen {
     static navigatorStyle = {
         ...SCREEN_OPTIONS.navBarHidden
     }

@@ -1,7 +1,7 @@
 import React from 'react'
 import View from 'react-native'
 import { Text, Input, Button, Container, Alert } from '../../component/commons'
-import { BaseScreen } from '../commons'
+import { CommonScreen } from '../commons'
 import { SCREEN_OPTIONS } from '../const'
 import PasscodeHintComp from '../../component/passcode/passcode-hint'
 import Passcode from '../../service/Passcode'
@@ -9,10 +9,7 @@ import conf from '../../config'
 import { setPasscode } from '../../store/auth'
 import Navigation from 'react-native-navigation'
 
-export class SetHintScreen extends BaseScreen {
-    static navigatorStyle = {
-        ...SCREEN_OPTIONS.navBarHidden
-    }
+export class SetHintScreen extends CommonScreen {
     constructor(props) {
         super(props)
         this.state = {

@@ -1,6 +1,10 @@
 import React from 'react'
+import { SCREEN_OPTIONS } from './const'
 
-export class BaseScreen extends React.Component {
+export class CommonScreen extends React.Component {
+    static navigatorStyle = {
+        ...SCREEN_OPTIONS.navBarHidden
+    }
     constructor(props) {
         super(props)
     }
