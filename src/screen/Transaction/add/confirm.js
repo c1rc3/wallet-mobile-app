@@ -1,11 +1,11 @@
 
 import React from 'react'
-import { ScrollContainer, SettingInput, RoundedButton, DashedButton, SettingTitle, SettingDesc, RoundedInput } from '../../../component/commons'
+import { ScrollContainer, Text, Touchable, SettingInput, RoundedButton, DashedButton, SettingTitle, SettingDesc, RoundedInput } from '../../../component/commons'
 import CommonNav from '../../../component/navbar/common'
 import CoinTokenItem from '../../../component/coin-token-item'
 import { CommonScreen } from '../../commons'
 import { SCREEN_OPTIONS, SCREEN_IDS } from '../../const'
-import { View, FlatList } from 'react-native'
+import { View, FlatList, Linking } from 'react-native'
 import icons from '../../../config/icons'
 
 import { TransactionMonitorInfo } from '../../../service/TransactionMonitor'
@@ -23,6 +23,12 @@ class ConfirmScreen extends CommonScreen {
         }
         this._tokens = []
         console.log('AddTransactionMonitorScreen', this.props.coin)
+    }
+
+    onSuccess(e) {
+        Linking
+            .openURL(e.data)
+            .catch(err => console.error('An error occured', err))
     }
     render() {
         let model = this.state.model

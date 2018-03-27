@@ -52,11 +52,13 @@
 		</dict>
 	</dict>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string/>
+	<string>Your message to user when the photo library is accessed for the first time</string>
 	<key>NSCameraUsageDescription</key>
-	<string/>
+	<string>Your message to user when the camera is accessed for the first time</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string/>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Your message to user when the photo library is accessed for the first time</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Montserrat-Black.ttf</string>
