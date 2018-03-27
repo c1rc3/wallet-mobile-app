@@ -17,8 +17,11 @@ class ConfirmScreen extends CommonScreen {
         super(props)
         this.state = {
             loading: true,
-            model: new TransactionMonitorInfo()
+            tokens: [],
+            model: new TransactionMonitorInfo(),
+            filterTokens: ''
         }
+        this._tokens = []
         console.log('AddTransactionMonitorScreen', this.props.coin)
     }
     render() {
@@ -48,7 +51,7 @@ class ConfirmScreen extends CommonScreen {
                     </View>
                     <FlatList
                         ref={ref => this.listRef = ref}
-                        data={this.state.items}
+                        data={this.state.tokens}
                         renderItem={({ item }) => this.renderItem(item)}
                         keyExtractor={this.keyExtractor}
                         ListFooterComponent={
@@ -58,7 +61,11 @@ class ConfirmScreen extends CommonScreen {
                         }
                         ListHeaderComponent={
                             <View style={styles.search_input_container_confirm}>
-                                <RoundedInput onChangeText={value => this.filter(value)} placeholder={'Search...'} />
+                                <RoundedInput
+                                    value={this.state.filterTokens}
+                                    onChangeText={value => this.filter(value)}
+                                    placeholder={'Search...'}
+                                />
                             </View>
                         }
                         stickyHeaderIndices={[0]}
@@ -74,12 +81,16 @@ class ConfirmScreen extends CommonScreen {
     filter(value = '') {
         this.setState({
             loading: false,
-            items: value ? this._items.filter(item => item.name.toLowerCase().indexOf(value.toLowerCase()) >= 0) : this._items
+            filterTokens: value,
+            tokens: value ? this._tokens.filter(item => item.name.toLowerCase().indexOf(value.toLowerCase()) >= 0) : this._tokens
         })
     }
-    renderItem(item, key) {
+    renderItem(item) {
         return (
-            <CoinTokenItem onPress={() => this.selectCoin(item)} key={key} name={item.name || item.slug || item.symbol} />
+            <CoinTokenItem
+                onPress={() => this.uncheckItem(item)}
+                checked={true}
+                name={item.name || item.slug || item.symbol} />
         )
     }
     changeName(value) {
@@ -96,18 +107,32 @@ class ConfirmScreen extends CommonScreen {
             model
         })
     }
+    uncheckItem(item) {
+        this._tokens = this._tokens.filter(i => i.id !== item.id)
+        this.filter(this.state.filterTokens)
+    }
     scanQRCode() {
 
     }
-    confirm() {
+    updateTokens(tokens) {
+        this._tokens = tokens
+        this.setState({
+            tokens: this._tokens,
+            filterTokens: ''
+        })
     }
     selectTokens() {
         this.props.navigator.showModal({
             screen: SCREEN_IDS.addTransactionMonitorSelectToken,
             passProps: {
-                coin: this.props.coin
+                coin: this.props.coin,
+                tokens: this._tokens,
+                onSubmit: tokens => this.updateTokens(tokens)
             }
         })
+    }
+    confirm() {
+
     }
 }
 

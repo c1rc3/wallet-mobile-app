@@ -65,13 +65,14 @@ export default StyleSheet.create({
         width: '100%'
     },
     nav_button: {
-        position: 'absolute',
         padding: 10,
-        height: 40,
-        fontSize: 17,
+        fontSize: 14,
         top: 0,
-        fontWeight: '400',
-        color: '#fff'
+        fontWeight: '500',
+        fontFamily: 'Montserrat',
+        fontStyle: 'normal',
+        letterSpacing: 0,
+        color: '#4fccff'
     },
     nav_button_left: {
         left: 0

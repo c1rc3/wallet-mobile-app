@@ -16,8 +16,8 @@ export default {
     right_button: {
         width: 70,
         height: 44,
-        justifyContent: 'center',
-        alignItems: 'flex-end',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
         flexDirection: 'row'
     },
     title_container: {

@@ -42,10 +42,11 @@ class SelectTokenScreen extends CommonScreen {
             <Container>
                 <ModalNav
                     title={'Select Tokens'}
-                    onClose={() => this.props.navigator.dismissModal()} />
+                    onClose={() => this.props.navigator.dismissModal()}
+                    onRight={() => this.confirm()}
+                    rightText={'Done'} />
                 <FlatList
                     ref={ref => this.listRef = ref}
-                    onScrollBeginDrag={this.recenterSwipeItem.bind(this)}
                     data={this.state.items}
                     renderItem={({ item }) => this.renderItem(item)}
                     keyExtractor={this.keyExtractor}
@@ -90,25 +91,32 @@ class SelectTokenScreen extends CommonScreen {
             if (!this._items.length) {
                 items = tmService.getTokens()
                 this._items = items
+                console.log(this.props.tokens)
+                this.props.tokens.forEach(token => {
+                    let tmp = items.find(item => item.id === token.id)
+                    if (tmp) {
+                        tmp.checked = true
+                    }
+                })
             }
             this.setState({
                 loading: false,
-                items
+                items: this.sortItems(items)
             })
         })
     }
-    recenterSwipeItem() {
-        for (let k in this.mapWalletRef) {
-            this.mapWalletRef[k].recenter()
-        }
-    }
-    renderBackdrop() {
-        return (
-            <View style={styles.backdrop}></View>
-        )
-    }
+    // recenterSwipeItem() {
+    //     for (let k in this.mapWalletRef) {
+    //         this.mapWalletRef[k].recenter()
+    //     }
+    // }
+    // renderBackdrop() {
+    //     return (
+    //         <View style={styles.backdrop}></View>
+    //     )
+    // }
     keyExtractor = (item, index) => index
-    renderItem(item, key) {
+    renderItem(item) {
         return (
             <CoinTokenItem
                 onPress={() => this.selectCoin(item)}
@@ -121,6 +129,17 @@ class SelectTokenScreen extends CommonScreen {
         this.setState({
             items: this.sortItems(this.state.items)
         })
+    }
+    getSelectedTokens() {
+        let res = this._items.filter(i => i.checked)
+        console.log(res)
+        return res
+    }
+    confirm() {
+        if (this.props.onSubmit) {
+            this.props.onSubmit(this.getSelectedTokens())
+        }
+        this.props.navigator.dismissModal()
     }
 }
 

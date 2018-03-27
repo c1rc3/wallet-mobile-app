@@ -23,6 +23,7 @@ export default {
     },
     lasted_block: {
         marginTop: 40,
+        marginBottom: 40,
         justifyContent: 'center'
     },
     // cnw_title_container: {

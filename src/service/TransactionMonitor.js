@@ -21,10 +21,9 @@ export class CoinInfo extends deneric.Entity {
 export class TokenInfo extends deneric.Entity {
     constructor(data) {
         super(data, {
-            id: ['id', deneric.String],
+            id: ['slug', deneric.String],
             name: ['name', deneric.String],
-            symbol: ['symbol', deneric.String],
-            slug: ['slug', deneric.String],
+            symbol: ['symbol', deneric.String]
         })
     }
 }
