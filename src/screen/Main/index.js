@@ -16,8 +16,8 @@ export default class LaunchScreen extends CommonScreen {
         // this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this))
     }
     componentDidMount() {
-        // let mainScreen = SCREEN_IDS.transactionMonitor
-        let mainScreen = SCREEN_IDS.addTransactionMonitorConfirm
+        let mainScreen = SCREEN_IDS.transactionMonitor
+        // let mainScreen = SCREEN_IDS.addTransactionMonitorConfirm
         let lastedAuthState = {}
         authStore.subscribe(() => {
             let state = authStore.getState()
