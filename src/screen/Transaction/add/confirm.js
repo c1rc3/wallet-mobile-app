@@ -7,8 +7,9 @@ import { CommonScreen } from '../../commons'
 import { SCREEN_OPTIONS, SCREEN_IDS } from '../../const'
 import { View, FlatList, Linking } from 'react-native'
 import icons from '../../../config/icons'
+import { addTxMonitor } from '../../../store/transaction-monitor'
 
-import { TransactionMonitorInfo } from '../../../service/TransactionMonitor'
+import { TxMonitorInfo, CoinInfo } from '../../../service/TransactionMonitor'
 
 import styles from '../styles'
 
@@ -16,13 +17,14 @@ class ConfirmScreen extends CommonScreen {
     constructor(props) {
         super(props)
         this.state = {
+            model: new TxMonitorInfo(props.model),
             loading: true,
             tokens: [],
-            model: new TransactionMonitorInfo(),
             filterTokens: ''
         }
-        this._tokens = []
-        console.log('AddTransactionMonitorScreen', this.props.coin)
+        // this.model = this.props.model
+        this.coin = props.coin
+        console.log('AddTransactionMonitorScreen', this.coin)
     }
 
     onSuccess(e) {
@@ -31,28 +33,16 @@ class ConfirmScreen extends CommonScreen {
             .catch(err => console.error('An error occured', err))
     }
     render() {
-        let model = this.state.model
-        let addressName = this.props.coin ? this.props.coin.shortName : ''
         return (
             <ScrollContainer onSwipeDown={this.props.navigator.dismissModal}>
                 <CommonNav
-                    title={'Confirm'}
-                    onBack={() => this.props.navigator.pop()} />
+                    title={'Select tokens'}
+                    onBack={() => this.props.navigator.pop()}
+                    onRight={() => this.props.navigator.popToRoot()}
+                    rightText={'Cancel'} />
                 <View style={styles.block}>
                     <View style={styles.block_content}>
-                        <SettingInput
-                            value={model.publicKey}
-                            onChangeText={value => this.changePublicKey(value)}
-                            label={`Your ${addressName} Address`}
-                            placeholder={`Enter ${addressName} address or scan QR code`}
-                            rightAction={this.scanQRCode}
-                            rightActionIcon={icons.qr}
-                        />
-                    </View>
-                </View>
-                <View style={styles.block}>
-                    <View style={styles.block_content}>
-                        <SettingTitle text={'TOKENS'} />
+                        <SettingTitle text={'TOKENS'} rightLabel={`${this.state.model.tokens.length} tokens`} />
                         <SettingDesc text={'Please choose Tokens to add for monitoring.'} />
                     </View>
                     <FlatList
@@ -66,19 +56,19 @@ class ConfirmScreen extends CommonScreen {
                             </View>
                         }
                         ListHeaderComponent={
-                            <View style={styles.search_input_container_confirm}>
+                            this.state.model.tokens.length ? <View style={styles.search_input_container_confirm}>
                                 <RoundedInput
                                     value={this.state.filterTokens}
                                     onChangeText={value => this.filter(value)}
                                     placeholder={'Search...'}
                                 />
-                            </View>
+                            </View> : null
                         }
                         stickyHeaderIndices={[0]}
                         horizontal={false} />
                 </View>
                 <View style={[styles.block, styles.lasted_block]}>
-                    <RoundedButton onPress={this.confirm.bind(this)} containerStyle={styles.button_container} text={'NEXT'} />
+                    <RoundedButton onPress={this.confirm.bind(this)} containerStyle={styles.button_container} text={'Add Monitor'} />
                 </View>
             </ScrollContainer>
         )
@@ -88,7 +78,7 @@ class ConfirmScreen extends CommonScreen {
         this.setState({
             loading: false,
             filterTokens: value,
-            tokens: value ? this._tokens.filter(item => item.name.toLowerCase().indexOf(value.toLowerCase()) >= 0) : this._tokens
+            tokens: value ? this.state.model.tokens.filter(item => item.name.toLowerCase().indexOf(value.toLowerCase()) >= 0) : this.state.model.tokens
         })
     }
     renderItem(item) {
@@ -114,17 +104,21 @@ class ConfirmScreen extends CommonScreen {
         })
     }
     uncheckItem(item) {
-        this._tokens = this._tokens.filter(i => i.id !== item.id)
+        this.state.model.tokens = this.state.model.tokens.filter(i => i.id !== item.id)
+        this.setState({
+            model: this.state.model
+        })
         this.filter(this.state.filterTokens)
     }
     scanQRCode() {
 
     }
-    updateTokens(tokens) {
-        this._tokens = tokens
+    updateTokens(tokens = []) {
+        this.state.model.tokens = tokens
         this.setState({
-            tokens: this._tokens,
-            filterTokens: ''
+            tokens: this.state.model.tokens,
+            filterTokens: '',
+            model: this.state.model
         })
     }
     selectTokens() {
@@ -132,13 +126,13 @@ class ConfirmScreen extends CommonScreen {
             screen: SCREEN_IDS.addTransactionMonitorSelectToken,
             passProps: {
                 coin: this.props.coin,
-                tokens: this._tokens,
+                tokens: this.state.model.tokens,
                 onSubmit: tokens => this.updateTokens(tokens)
             }
         })
     }
     confirm() {
-
+        addTxMonitor(this.state.model)
     }
 }
 

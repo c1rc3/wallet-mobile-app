@@ -41,14 +41,14 @@ export default {
         height: 20,
         lineHeight: 20
     },
-    est_price: {
+    amount: {
         fontSize: 16,
         fontWeight: '600',
         textAlign: 'right',
         height: 20,
         lineHeight: 20
     },
-    amount: {
+    address: {
         height: 20,
         opacity: 0.5,
         fontSize: 16,
@@ -56,11 +56,9 @@ export default {
         color: '#ffffff',
         fontWeight: '500'
     },
-    ratio: {
+    notify_icon: {
         height: 20,
-        fontSize: 16,
-        textAlign: 'right',
-        color: '#7ed321'
+        width: 16,
     },
     action_container: {
         height: '100%',

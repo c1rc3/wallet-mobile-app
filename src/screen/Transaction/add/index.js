@@ -10,7 +10,7 @@ import icons from '../../../config/icons'
 
 import { connect } from 'react-redux'
 import { getListWallets } from '../../../store/wallet'
-import tmService, { TokenInfo } from '../../../service/TransactionMonitor'
+import tmService, { TxMonitorInfo } from '../../../service/TransactionMonitor'
 
 import styles from '../styles'
 
@@ -42,7 +42,9 @@ class SelectCoinScreen extends CommonScreen {
             <Container>
                 <CommonNav
                     title={'Select Coin / Platform'}
-                    onBack={() => this.props.navigator.pop()} />
+                    onBack={() => this.props.navigator.pop()}
+                    onRight={() => this.props.navigator.pop()}
+                    rightText={'Cancel'} />
                 <FlatList
                     ref={ref => this.listRef = ref}
                     onScrollBeginDrag={this.recenterSwipeItem.bind(this)}

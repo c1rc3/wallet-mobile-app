@@ -1,27 +1,27 @@
 import React from 'react'
 import { CommonScreen } from '../commons'
-import { Text, Container } from '../../component/commons'
+import { Text, Container, Indicator } from '../../component/commons'
 import { SCREEN_OPTIONS } from '../const'
 import { AppState } from 'react-native'
 import authStore, { checkRegistered, lockWallet } from '../../store/auth'
 import { AUTH_STATUS } from '../../store/auth/const'
 import { SCREEN_IDS } from '../const'
 import JailMonkey from 'jail-monkey'
+import styles from './styles'
 
 console.warn('isJailBroken', JailMonkey.isJailBroken())
 
 export default class LaunchScreen extends CommonScreen {
     constructor(props) {
         super(props)
-        // this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this))
     }
     componentDidMount() {
-        // let mainScreen = SCREEN_IDS.transactionMonitor
-        let mainScreen = SCREEN_IDS.addTransactionMonitorConfirm
+        // let mainScreen = SCREEN_IDS.main
+        let mainScreen = SCREEN_IDS.transactionMonitor
         let lastedAuthState = {}
-        authStore.subscribe(() => {
-            let state = authStore.getState()
-            if (state.is_auth) {
+        if (authStore.getState().is_auth) {
+            authStore.subscribe(() => {
+                let state = authStore.getState()
                 if (lastedAuthState.status === state.status) return
                 switch (state.status) {
                     case AUTH_STATUS.IS_AUTH:
@@ -69,54 +69,41 @@ export default class LaunchScreen extends CommonScreen {
                             animationType: 'slide-down'
                         })
                 }
-            } else {
-                this.props.navigator.resetTo({
-                    screen: mainScreen,
-                    title: 'HOME',
-                    navigatorStyle: {
-                        ...SCREEN_OPTIONS.navBarHidden
-                    },
-                    animationType: 'slide-down'
-                })
-            }
-            lastedAuthState = {
-                ...state
-            }
-        })
+                lastedAuthState = {
+                    ...state
+                }
+            })
+            //handling app state
+            let lastedAppState = AppState.currentState
+            AppState.addEventListener('change', (nextAppState) => {
+                if (lastedAppState.match(/inactive|background/) && nextAppState === 'active') {
+                    lockWallet()
+                    console.log('App has come to the foreground!')
+                    //unlock app
+                } else if (lastedAuthState.status === AUTH_STATUS.IS_AUTH) {
+                    // lockWallet()
+                    // console.log()
+                    //lock app
+                }
+                lastedAppState = AppState.currentState
+            })
+        } else {
+            this.props.navigator.resetTo({
+                screen: mainScreen,
+                title: 'HOME',
+                navigatorStyle: {
+                    ...SCREEN_OPTIONS.navBarHidden
+                },
+                animationType: 'slide-down'
+            })
+        }
         checkRegistered()
-        //handling app state
-        let lastedAppState = AppState.currentState
-        AppState.addEventListener('change', (nextAppState) => {
-            if (lastedAppState.match(/inactive|background/) && nextAppState === 'active') {
-                lockWallet()
-                console.log('App has come to the foreground!')
-                //unlock app
-            } else if (lastedAuthState.status === AUTH_STATUS.IS_AUTH) {
-                // lockWallet()
-                // console.log()
-                //lock app
-            }
-            lastedAppState = AppState.currentState
-        })
     }
-    // this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this))
-    // onNavigatorEvent(event) {
-    //     debugger
-    //     // handle a deep link
-    //     if (event.type == 'DeepLink') {
-    //         console.log(event)
-    //         // const parts = event.link.split('/') // Link parts
-    //         // const payload = event.payload // (optional) The payload
-
-    //         // if (parts[0] == 'tab2') {
-    //         //     // handle the link somehow, usually run a this.props.navigator command
-    //         // }
-    //     }
-    // }
     render() {
         return (
-            <Container>
-                <Text>Loading...</Text>
+            <Container style={styles.container}>
+                <Indicator />
+                <Text style={styles.loading}>Loading...</Text>
             </Container>
         )
     }

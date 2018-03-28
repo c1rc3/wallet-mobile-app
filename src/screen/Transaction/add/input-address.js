@@ -6,28 +6,33 @@ import { SCREEN_OPTIONS, SCREEN_IDS } from '../../const'
 import { View } from 'react-native'
 import icons from '../../../config/icons'
 
-import { TransactionMonitorInfo } from '../../../service/TransactionMonitor'
+import { CoinInfo, TxMonitorInfo } from '../../../service/TransactionMonitor'
+// import tmService, { TxMonitorInfo } from '../../../service/TransactionMonitor'
 
 import styles from '../styles'
 
 class InputAddressScreen extends CommonScreen {
     constructor(props) {
         super(props)
+        this.coin = this.props.coin
         this.state = {
             loading: true,
             name: '',
             address: '',
-            model: new TransactionMonitorInfo()
+            model: new TxMonitorInfo({
+                coin: this.coin
+            })
         }
-        console.log('AddTransactionMonitorScreen', this.props.coin)
     }
     render() {
         let model = this.state.model
         return (
             <ScrollContainer onSwipeDown={this.props.navigator.dismissModal}>
                 <CommonNav
-                    title={`Input ${this.props.coin.shortName} Address`}
-                    onBack={() => this.props.navigator.pop()} />
+                    title={`Input ${this.coin.shortName} Address`}
+                    onBack={() => this.props.navigator.pop()}
+                    onRight={() => this.props.navigator.popToRoot()}
+                    rightText={'Cancel'} />
                 <View style={styles.block}>
                     <View style={styles.block_content}>
                         <SettingInput
@@ -39,8 +44,8 @@ class InputAddressScreen extends CommonScreen {
                         <SettingInput
                             value={model.publicKey}
                             onChangeText={value => this.changePublicKey(value)}
-                            label={`${this.props.coin.shortName} Address`}
-                            placeholder={`Enter ${this.props.coin.shortName} address or scan QR code`}
+                            label={`${this.coin.shortName} Address`}
+                            placeholder={`Enter ${this.coin.shortName} address or scan QR code`}
                             rightAction={this.scanQRCode}
                             rightActionIcon={icons.qr}
                         />
@@ -73,9 +78,8 @@ class InputAddressScreen extends CommonScreen {
         this.props.navigator.push({
             screen: SCREEN_IDS.addTransactionMonitorConfirm,
             passProps: {
-                coin: this.props.coin,
-                name: this.state.name,
-                address: this.state.address
+                coin: this.coin,
+                model: this.state.model.serialize
             }
         })
     }

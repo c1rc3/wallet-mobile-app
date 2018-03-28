@@ -41,6 +41,9 @@ export default {
         width: 14,
         height: 14
     },
+    btn_icon: {
+        paddingLeft: 10
+    },
     create_icon: {
         width: 18,
         height: 18

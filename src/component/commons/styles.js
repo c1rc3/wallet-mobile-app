@@ -46,9 +46,12 @@ export default StyleSheet.create({
         borderColor: '#fff'
     },
     button_icon: {
-        padding: 10,
-        height: 44,
-        width: 44,
+        paddingLeft: 8,
+        paddingRight: 8,
+        paddingTop: 10,
+        paddingBottom: 10,
+        height: 40,
+        width: 40,
         justifyContent: 'center'
     },
     button_icon_image: {

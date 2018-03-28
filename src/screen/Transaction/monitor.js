@@ -12,8 +12,7 @@ import ActionButton from 'react-native-action-button'
 import icons from '../../config/icons'
 
 import { connect } from 'react-redux'
-import { getListWallets } from '../../store/wallet'
-import { TransactionMonitorInfo } from '../../service/TransactionMonitor'
+import { getListTxMonitors } from '../../store/transaction-monitor'
 
 import styles from './styles'
 
@@ -47,8 +46,7 @@ class TransactionMonitorScreen extends CommonScreen {
                     onCreate={this.addAddress.bind(this)} />
                 <FlatList
                     ref={ref => this.listRef = ref}
-                    onScrollBeginDrag={this.recenterSwipeItem.bind(this)}
-                    data={this.props.wallets}
+                    data={this.props.items}
                     renderItem={({ item }) => this.renderItem(item)}
                     keyExtractor={this.keyExtractor}
                     ListFooterComponent={<View style={styles.scroll_content_offset} />}
@@ -61,17 +59,11 @@ class TransactionMonitorScreen extends CommonScreen {
         this.setState({
             loading: true
         })
-        getListWallets().then(resp => {
-            console.log(resp)
+        getListTxMonitors().then(resp => {
             this.setState({
                 loading: false
             })
         })
-    }
-    recenterSwipeItem() {
-        for (let k in this.mapWalletRef) {
-            this.mapWalletRef[k].recenter()
-        }
     }
     renderBackdrop() {
         return (
@@ -81,22 +73,8 @@ class TransactionMonitorScreen extends CommonScreen {
     keyExtractor = (item, index) => index
     renderItem(item, key) {
         return (
-            <Swipeable onRef={ref => {
-                this.mapWalletRef[item.id] = ref
-            }}
-                onSwipeStart={this.recenterSwipeItem.bind(this)}
-                rightButtons={this.renderRightButtons(item)} key={key}>
-                <TransactionMonitorItem onPress={() => this.edit(item)} key={key} />
-            </Swipeable>
+            <TransactionMonitorItem model={item} onPress={() => this.edit(item)} key={key} />
         )
-    }
-    renderRightButtons(item) {
-        return null
-        // return [
-        //     <WalletSwipeAction icon={icons.send} onPress={() => this.send(item)} key={0} index={0} text={'Send'} />,
-        //     <WalletSwipeAction icon={icons.receive} onPress={() => this.receive(item)} key={1} index={1} text={'Receive'} />,
-        //     <WalletSwipeAction icon={icons.edit} onPress={() => this.updateWallet(item)} key={2} index={2} text={'Edit'} />,
-        // ]
     }
     showSideBar() {
         this.props.navigator.toggleDrawer()
@@ -111,9 +89,12 @@ class TransactionMonitorScreen extends CommonScreen {
             screen: SCREEN_IDS.addTransactionMonitor
         })
     }
-    edit() {
+    edit(item) {
         this.props.navigator.showModal({
-            screen: SCREEN_IDS.editTransactionMonitor
+            screen: SCREEN_IDS.editTransactionMonitor,
+            passProps: {
+                id: item.id
+            }
         })
     }
 }

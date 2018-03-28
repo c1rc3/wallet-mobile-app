@@ -6,7 +6,7 @@ import { SCREEN_OPTIONS, SCREEN_IDS } from '../const'
 import { View } from 'react-native'
 import icons from '../../config/icons'
 
-import { TransactionMonitorInfo } from '../../service/TransactionMonitor'
+import { TxMonitorInfo } from '../../service/TransactionMonitor'
 
 import styles from './styles'
 
@@ -15,7 +15,7 @@ class EditTransactionMonitorScreen extends CommonScreen {
         super(props)
         this.state = {
             loading: true,
-            model: new TransactionMonitorInfo()
+            model: new TxMonitorInfo()
         }
     }
     render() {

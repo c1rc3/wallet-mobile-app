@@ -13,7 +13,7 @@ export class SettingInput extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            value: ''
+            value: this.props.value || ''
         }
     }
     render() {
@@ -24,7 +24,7 @@ export class SettingInput extends Component {
                         <View style={styles.input_box_content_icon}>
                             {this._renderActionPlaceholder()}
                             <Text style={styles.input_box_label}>{this.props.label}</Text>
-                            <Input onChangeText={value => this.onChangeText(value)} placeholder={''} style={styles.input_box_input}></Input>
+                            <Input {...this.props} onChangeText={value => this.onChangeText(value)} placeholder={''} style={styles.input_box_input}></Input>
                         </View>
                         <View style={styles.input_box_icon_container}>
                             <Touchable onPress={this.props.rightAction}>
@@ -42,6 +42,13 @@ export class SettingInput extends Component {
                 <Input {...this.props} onChangeText={value => this.onChangeText(value)} placeholder={''} style={styles.input_box_input}></Input>
             </View>
         )
+    }
+    componentWillReceiveProps(props) {
+        if (this.state.value != props.value) {
+            this.setState({
+                value: props.value
+            })
+        }
     }
     onChangeText(value) {
         this.setState({ value })

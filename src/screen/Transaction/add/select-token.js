@@ -23,19 +23,9 @@ class SelectTokenScreen extends CommonScreen {
         }
         this._items = []
         this.mapWalletRef = {}
-        this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this))
     }
     componentDidMount() {
         this.getData()
-    }
-    onNavigatorEvent(event) {
-        // handle a deep link
-        if (event.type == 'DeepLink') {
-            console.log('HomeScreen', event)
-            this.props.navigator.push({
-                screen: event.link
-            })
-        }
     }
     render() {
         return (
@@ -91,7 +81,6 @@ class SelectTokenScreen extends CommonScreen {
             if (!this._items.length) {
                 items = tmService.getTokens()
                 this._items = items
-                console.log(this.props.tokens)
                 this.props.tokens.forEach(token => {
                     let tmp = items.find(item => item.id === token.id)
                     if (tmp) {
@@ -132,7 +121,6 @@ class SelectTokenScreen extends CommonScreen {
     }
     getSelectedTokens() {
         let res = this._items.filter(i => i.checked)
-        console.log(res)
         return res
     }
     confirm() {

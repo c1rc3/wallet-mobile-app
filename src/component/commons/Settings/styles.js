@@ -98,7 +98,11 @@ export default {
         justifyContent: 'center'
     },
     select_box_item_text: {
-
+        marginTop: 0,
+        borderBottomWidth: 1,
+        borderColor: '#ffffff20',
+        paddingTop: 8,
+        paddingBottom: 6
     },
     select_box_caret: {
         width: 30,
@@ -163,23 +167,31 @@ export default {
         color: '#ffffff',
         paddingLeft: 10
     },
+    title_box_container: {
+        marginTop: 0,
+        borderBottomWidth: 1,
+        borderColor: '#ffffff20',
+        paddingTop: 8,
+        paddingBottom: 6
+    },
     title_box: {
         borderWidth: 0,
         paddingLeft: 0,
         paddingRight: 0,
-        paddingTop: 10,
-        paddingBottom: 6,
-        height: 40,
+        paddingTop: 0,
+        paddingBottom: 0,
         flexDirection: 'row'
     },
     title_box_content: {
+        flex: 1,
         borderWidth: 0,
         paddingLeft: 0,
         paddingRight: 0,
-        paddingTop: 10,
-        paddingBottom: 6,
-        height: 40,
-        flexDirection: 'row'
+        paddingTop: 0,
+        paddingBottom: 0,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center'
     },
     title_box_text: {
         height: 15,
@@ -187,7 +199,15 @@ export default {
         fontSize: 12,
         fontWeight: '500',
         textAlign: 'left',
-        color: '#ffffff'
+        color: '#ffffff',
+    },
+    title_box_right_label: {
+        height: 15,
+        opacity: 0.7,
+        fontSize: 12,
+        fontWeight: '500',
+        textAlign: 'right',
+        color: '#ffffff',
     },
     desc_box_container: {
         marginTop: 0,

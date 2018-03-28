@@ -1,6 +1,7 @@
 import { Navigation } from 'react-native-navigation'
 import { Provider } from 'react-redux'
 import walletStore from '../store/wallet'
+import txMonitorStore from '../store/transaction-monitor'
 
 import HomeScreen from './Home'
 import WelcomeScreen from './Welcome'
@@ -20,11 +21,12 @@ import WalletSendScreen from './Wallet/send'
 import UpdateWalletScreen from './Wallet/update'
 import SettingsScreen from './Settings'
 import TransactionMonitorScreen from './Transaction/monitor'
+import AddTransactionMonitorScreen from './Transaction/add'
 import ATMConfirmScreen from './Transaction/add/confirm'
 import ATMInputAddressScreen from './Transaction/add/input-address'
-import ATMSelectCoinScreen from './Transaction/add/select-coin'
+// import ATMSelectCoinScreen from './Transaction/add/select-coin'
 import ATMSelectTokenScreen from './Transaction/add/select-token'
-import EditTransactionMonitorScreen from './Transaction/edit-address'
+import EditTransactionMonitorScreen from './Transaction/edit'
 
 import { SCREEN_IDS, COMPONENT_IDS } from './const'
 
@@ -46,9 +48,8 @@ export function registerScreens() {
     Navigation.registerComponent(SCREEN_IDS.settings, () => SettingsScreen)
 
     //Transactions
-    Navigation.registerComponent(SCREEN_IDS.transactionMonitor, () => TransactionMonitorScreen, walletStore, Provider)
-    Navigation.registerComponent(SCREEN_IDS.addTransactionMonitor, () => ATMSelectCoinScreen)
-    Navigation.registerComponent(SCREEN_IDS.addTransactionMonitorSelectCoin, () => ATMSelectCoinScreen)
+    Navigation.registerComponent(SCREEN_IDS.transactionMonitor, () => TransactionMonitorScreen, txMonitorStore, Provider)
+    Navigation.registerComponent(SCREEN_IDS.addTransactionMonitor, () => AddTransactionMonitorScreen)
     Navigation.registerComponent(SCREEN_IDS.addTransactionMonitorInputAddress, () => ATMInputAddressScreen)
     Navigation.registerComponent(SCREEN_IDS.addTransactionMonitorSelectToken, () => ATMSelectTokenScreen)
     Navigation.registerComponent(SCREEN_IDS.addTransactionMonitorConfirm, () => ATMConfirmScreen)

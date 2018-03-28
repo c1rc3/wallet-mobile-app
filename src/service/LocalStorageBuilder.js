@@ -1,10 +1,11 @@
 import IdGen from '../util/IdGen'
 import LocalStorage from './LocalStorage'
+import DataResponse from '../entity/DataResponse'
 
 export default function localStorageBuilder(options) {
     let listIdsKey = options.list_ids_key
     let detailPrefix = options.detail_prefix
-    let ModelClass = options.class
+    const ModelClass = options.constructor
     return {
         genId() {
             return IdGen()
@@ -19,10 +20,10 @@ export default function localStorageBuilder(options) {
             return this.getListIds().then(idsResp => {
                 if (!idsResp.error) {
                     let ids = idsResp.data || []
-                    //remove wallet
+                    //remove item
                     this.set(id, null).then(deleteResp => {
                         if (!deleteResp.error) {
-                            //update list wallet ids
+                            //update list item ids
                             return this.setListIds(ids.filter(idTmp => idTmp !== id))
                         }
                         return deleteResp
@@ -43,16 +44,15 @@ export default function localStorageBuilder(options) {
                     return idsResp
                 } else {
                     let ids = idsResp.data || []
-                    // let wallets = []
                     return Promise.all(ids.map(id => {
-                        return this.get(id).then(walletResp => {
-                            if (!walletResp.error) {
-                                return new ModelClass(walletResp.data)
+                        return this.get(id).then(itemResp => {
+                            if (!itemResp.error) {
+                                return new ModelClass(itemResp.data)
                             }
                             return null
                         })
-                    })).then(wallets => {
-                        return new ModelClass(wallets.filter(w => w !== null))
+                    })).then(items => {
+                        return new DataResponse.success(items.filter(w => w !== null))
                     })
                 }
             })

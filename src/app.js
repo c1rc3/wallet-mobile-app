@@ -1,12 +1,8 @@
 import 'react-native'
-import conf from './config'
-import Logger from './util/Logger'
 import { Navigation } from 'react-native-navigation'
 import { registerScreens, registerComponents } from './screen'
 import { SCREEN_IDS, SCREEN_OPTIONS } from './screen/const'
 import { StatusBar } from 'react-native'
-import authStore, { checkRegistered, lockWallet } from './store/auth'
-import { AUTH_STATUS } from './store/auth/const'
 
 export default function startApp() {
     registerScreens()
