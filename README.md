@@ -51,11 +51,11 @@ npm test
  - **transaction-monitor**: *Transaction Monitor Store*
  - **wallet**: *Wallet Store*
 
-**Notes**: each store have contain structure
- - *const.js*: *Define action types, constant*
- - *actions.js*: *Define actions*
- - *index.js*: *Store & common action using on Screen*
- - *reducers.js*: *Define reducers*
+ - **NOTES**: each store have contain structure
+     - *const.js*: *Define action types, constant*
+     - *actions.js*: *Define actions*
+     - *index.js*: *Store & common action using on Screen*
+     - *reducers.js*: *Define reducers*
 
 ## 4. Dependencies
 
