@@ -1,8 +1,7 @@
 import { AUTH_ACTION_TYPES, AUTH_STATUS } from './const'
 
 const initialState = {
-    status: AUTH_STATUS.CHECKING_REGISTERED,
-    is_auth: false
+    status: AUTH_STATUS.CHECKING_REGISTERED
 }
 
 function auth(state = initialState, action = {}) {
@@ -22,7 +21,6 @@ function auth(state = initialState, action = {}) {
                 ...state,
                 status: AUTH_STATUS.IS_AUTH
             }
-            break
         case AUTH_ACTION_TYPES.CHECK_REGISTERED:
             return {
                 ...state,
