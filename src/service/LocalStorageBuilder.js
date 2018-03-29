@@ -59,13 +59,9 @@ export default function localStorageBuilder(options) {
         },
         add(data) {
             let id = this.genId()
-            let created_time = +new Date()
-            let updated_time = created_time
             return this.set(id, {
                 ...data,
-                id,
-                created_time,
-                updated_time
+                id
             }).then(setResp => {
                 if (!setResp.error) {
                     return this.getListIds().then(listIdsResp => {
@@ -74,9 +70,7 @@ export default function localStorageBuilder(options) {
                             if (!setListIdsResq.error) {
                                 setListIdsResq.data = {
                                     ...data,
-                                    id,
-                                    created_time,
-                                    updated_time
+                                    id
                                 }
                             }
                             return setListIdsResq
@@ -87,11 +81,7 @@ export default function localStorageBuilder(options) {
             })
         },
         update(id, data = {}) {
-            let updated_time = +new Date()
-            return LocalStorage.mergeObject(`${detailPrefix}${id}`, {
-                ...data,
-                updated_time
-            }).then(resp => {
+            return LocalStorage.mergeObject(`${detailPrefix}${id}`, data).then(resp => {
                 if (!resp.error) {
                     resp.data = data
                 }
