@@ -2,6 +2,7 @@ import React from 'react'
 import { Container, Text, Button } from '../../component/commons'
 import { SCREEN_IDS } from '../const'
 import { Navigation } from 'react-native-navigation'
+import styles from './styles'
 
 export default class LeftSideBar extends React.Component {
     constructor(props) {
@@ -9,7 +10,7 @@ export default class LeftSideBar extends React.Component {
     }
     render() {
         return (
-            <Container>
+            <Container style={styles.container}>
                 <Button onPress={() => this.navToSettings()} text={'Settings'} />
             </Container>
         )

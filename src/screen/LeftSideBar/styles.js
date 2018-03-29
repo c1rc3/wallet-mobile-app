@@ -1,8 +1,9 @@
 export default {
-    wallet_overview_container: {
+    container: {
         flex: 1,
-        height: 213,
-        borderRadius: 8,
-        backgroundColor: '#172132'
+        paddingTop: 30,
+        paddingLeft: 10,
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start'
     }
 }
