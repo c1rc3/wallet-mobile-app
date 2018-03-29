@@ -17,7 +17,7 @@ export default class LaunchScreen extends CommonScreen {
         let mainScreen = SCREEN_IDS.transactionMonitor
         let lastedAuthState = {}
         //check required auth
-        if (conf.app.is_auth && 0) {
+        if (conf.app.is_auth) {
             //subcribe authStore for handle authStatus
             authStore.subscribe(() => {
                 let state = authStore.getState()
