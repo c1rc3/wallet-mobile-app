@@ -9,6 +9,5 @@ describe('Test IdGen', () => {
             expect(mapIds[id]).toBeUndefined()
             mapIds[id] = true
         }
-        console.log(mapIds)
     })
 })

@@ -8,6 +8,7 @@ export default function startApp() {
     registerScreens()
     registerComponents()
     StatusBar.setBarStyle('light-content')
+    //Start app with main Screen
     Navigation.startSingleScreenApp({
         screen: {
             screen: SCREEN_IDS.main,

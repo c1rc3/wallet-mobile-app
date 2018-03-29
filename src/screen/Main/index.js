@@ -6,25 +6,29 @@ import { AppState } from 'react-native'
 import authStore, { checkRegistered, lockWallet } from '../../store/auth'
 import { AUTH_STATUS } from '../../store/auth/const'
 import { SCREEN_IDS } from '../const'
-import JailMonkey from 'jail-monkey'
 import styles from './styles'
-
-console.warn('isJailBroken', JailMonkey.isJailBroken())
+import conf from '../../config'
 
 export default class LaunchScreen extends CommonScreen {
     constructor(props) {
         super(props)
     }
+    //verify permission and route screen
     componentDidMount() {
-        // let mainScreen = SCREEN_IDS.main
         let mainScreen = SCREEN_IDS.transactionMonitor
         let lastedAuthState = {}
-        if (authStore.getState().is_auth) {
+        //check required auth
+        if (conf.is_auth) {
+            //subcribe authStore for handle authStatus
             authStore.subscribe(() => {
                 let state = authStore.getState()
                 if (lastedAuthState.status === state.status) return
                 switch (state.status) {
+                    //authed
                     case AUTH_STATUS.IS_AUTH:
+                        /* if lasted auth status is IS_LOCKED => dismiss modal PasscodeRequied
+                        ** else => resetTo main sceen
+                        */
                         if (lastedAuthState.status === AUTH_STATUS.IS_LOCKED) {
                             this.props.navigator.dismissModal({
                                 animationType: 'slide-down'
@@ -40,6 +44,7 @@ export default class LaunchScreen extends CommonScreen {
                             })
                         }
                         break
+                    //not auth
                     case AUTH_STATUS.NOT_AUTH:
                         this.props.navigator.resetTo({
                             screen: SCREEN_IDS.unlock,
@@ -50,6 +55,7 @@ export default class LaunchScreen extends CommonScreen {
                             animationType: 'slide-down'
                         })
                         break
+                    //not registerd -> force to set passcode
                     case AUTH_STATUS.NOT_REGISTERED:
                         this.props.navigator.resetTo({
                             screen: SCREEN_IDS.setPasscode,
@@ -59,6 +65,7 @@ export default class LaunchScreen extends CommonScreen {
                             },
                             animationType: 'slide-down'
                         })
+                    //app was locked
                     case AUTH_STATUS.IS_LOCKED:
                         this.props.navigator.showModal({
                             screen: SCREEN_IDS.unlock,
@@ -76,18 +83,14 @@ export default class LaunchScreen extends CommonScreen {
             //handling app state
             let lastedAppState = AppState.currentState
             AppState.addEventListener('change', (nextAppState) => {
-                if (lastedAppState.match(/inactive|background/) && nextAppState === 'active') {
+                if (lastedAppState.match(/inactive|background/) && nextAppState === 'active' && lastedAuthState.status === AUTH_STATUS.IS_AUTH) {
+                    //App has come to the foreground
                     lockWallet()
-                    console.log('App has come to the foreground!')
-                    //unlock app
-                } else if (lastedAuthState.status === AUTH_STATUS.IS_AUTH) {
-                    // lockWallet()
-                    // console.log()
-                    //lock app
                 }
                 lastedAppState = AppState.currentState
             })
         } else {
+            //reset screen to mainScreen
             this.props.navigator.resetTo({
                 screen: mainScreen,
                 title: 'HOME',

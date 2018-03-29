@@ -60,11 +60,20 @@
     "globals": {
       "__DEV__": true
     },
+    "moduleNameMapper": {
+      "^image![a-zA-Z0-9$_-]+$": "GlobalImageStub",
+      "^[@./a-zA-Z0-9$_-]+\\.(png|gif)$": "RelativeImageStub"
+    },
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/src/component/chart"
+    ],
     "transform": {
       "^.+\\.js$": "babel-jest"
     },
     "transformIgnorePatterns": [
-      "node_modules/(?!react-native|deneric)/"
-    ]
+      "node_modules/(?!react-native|deneric|art)/"
+    ],
+    "verbose": true
   }
 }
