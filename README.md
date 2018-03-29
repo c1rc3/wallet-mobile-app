@@ -43,6 +43,7 @@ npm test
  - **const.js**: *Define constant for screen: screen ids, screen options*
  - **commons**: *Define CommonScreen with common options*
  - **index.js**: *Register Screens*
+ - **Main/index.js**: *Main Screen. Contain actions for navigate screen app with permission*
  
 ### **src/store**: Redux Store
 

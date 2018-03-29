@@ -1,6 +1,6 @@
 const _instance = {
     config: {
-        is_auth: false,
+        is_auth: true,
         app_name: 'Libertas Mobile',
         passcode_length: 6
     }

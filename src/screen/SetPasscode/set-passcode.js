@@ -9,9 +9,6 @@ import Navigation from 'react-native-navigation'
 import { SCREEN_IDS, SCREEN_OPTIONS } from '../const'
 
 export class SetPasscodeScreen extends CommonScreen {
-    static navigatorStyle = {
-        ...SCREEN_OPTIONS.navBarHidden
-    }
     constructor(props) {
         super(props)
         this.state = {

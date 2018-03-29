@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { SuccessReponse, ErrorResponse, DataResponse } from '../entity/DataResponse'
+import { SuccessReponse, ErrorResponse } from '../entity/DataResponse'
 import LocalStorage from './LocalStorage'
 import conf from '../config'
 
@@ -53,7 +53,7 @@ export const Passcode = {
         if (_.isString(passcode) && passcode.length === conf.app.passcode_length) {
             return new SuccessReponse()
         }
-        return new ErrorResponse(0, `Passcode must be have more than ${PASSCODE.validate.length} character`)
+        return new ErrorResponse(0, `Passcode must be have more than ${conf.app.passcode_length} character`)
     }
 }
 

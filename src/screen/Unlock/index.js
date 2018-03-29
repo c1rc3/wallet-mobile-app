@@ -6,9 +6,6 @@ import conf from '../../config'
 import { unlock, getHint } from '../../store/auth'
 
 export class HomeScreen extends CommonScreen {
-    static navigatorStyle = {
-        // navBarHidden: true
-    }
     constructor(props) {
         super(props)
     }

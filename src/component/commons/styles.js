@@ -61,11 +61,13 @@ export default StyleSheet.create({
     },
     nav_button_container: {
         position: 'absolute',
-        top: 4,
+        top: 26,
         left: 0,
-        paddingLeft: 12,
         paddingRight: 12,
-        width: '100%'
+        paddingLeft: 12,
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     },
     nav_button: {
         padding: 10,
